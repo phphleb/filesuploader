@@ -149,6 +149,7 @@ class FilesUploader
         return $this->trans_name[$this->lang][$name];
     }
 
+    // Создание формы с возможностью указать собственный шаблон
     public function createUploadPage(string $path = "resources/page.php")
     {
         $this->createPage($path);
@@ -272,6 +273,16 @@ class FilesUploader
             $result[] = copy($tmp, $path . $new_name) ? $new_name : false;
         }
         return $result;
+    }
+
+    public function getCssStyles()
+    {
+        return file_get_contents("resources/upload.css");
+    }
+
+    public function getJsScript()
+    {
+        return file_get_contents("resources/upload.js");
     }
 
 }

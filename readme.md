@@ -3,6 +3,9 @@
 Создание страницы/формы выбора изображений (вид по умолчанию)
 
 ```php
+include "/vendor/phphleb/filesuploader/FilesUploader.php";
+include "/vendor/phphleb/filesuploader/ImageUploader.php";
+
 $form = new Phphleb\FilesUploader\ImageUploader(); // Класс загрузки изображений
 $form->setMaxFiles(5); // Позволяет загружать до 5 файлов
 $form->setFormAction("/fupload/"); // Адрес отправки данных
@@ -31,7 +34,7 @@ $form->setMaxFiles(1); // Загрузка только одного файла
 $form->setFormAction("/fupload/"); // Адрес отправки данных
 $form->setMaxFileSize(300); // Максимальный размер файла в килобайтах (глобальное ограничение лучше устанавливать в настройках сервера)
 $form->setLang("ru"); // Язык формы
-$form->createUploadPage(); // Создание формы загрузки после назначения параметров
+$form->createUploadPage(); // Создание формы загрузки после назначения параметров (принимает необязательным параметром путь до файла с шаблоном формы по образцу /resources/page.php)
 ```
 
 При приёме необходимо будет продублировать эти параметры

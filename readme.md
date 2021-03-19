@@ -8,19 +8,22 @@ include "/vendor/phphleb/filesuploader/ImageUploader.php";
 
 $form = new Phphleb\FilesUploader\ImageUploader(); // Класс загрузки изображений
 $form->setMaxFiles(5); // Позволяет загружать до 5 файлов
-$form->setFormAction("/fupload/"); // Адрес отправки данных
+$form->setFormAction("/fupload/"); // Адрес отправки данных (методом POST)
 $form->createUploadPage(); // Создание формы загрузки после назначения параметров
 ```
 
-Приём данных и сохранение
+Приём данных и сохранение 
 
 ```php
 $form = new Phphleb\FilesUploader\ImageUploader();
 $form->setMaxFiles(5); // Позволяет загружать до 5 файлов (дублирование проверки на бекенде)
+$form->getAllFileData();
 if(!$form->checkFilesAndCreateReport()){ // Проверка данных на соответствие
   die("Ошибка в данных");
 }
 $report = $form->copyFilesTo("/storage/public/temp/"); // Сохранение файлов в папку c получением отчёта
+
+// Неоходим редирект (например, на страницу формы ввода), чтобы при обновлении текущей страницы не дублировались данные
 ```
 
 Есть возможность загружать произвольные файлы

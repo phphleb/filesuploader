@@ -269,7 +269,7 @@ class FilesUploader
         $fname = $this->getFileName();
         $result = [];
         foreach ($temp as $key => $tmp) {
-            $new_name = md5($tmp . rand()) . md5($fname[$key]){0};
+            $new_name = md5($tmp . rand()) . substr(md5($fname[$key]), 0, 1);
             $result[] = copy($tmp, $path . $new_name) ? $new_name : false;
         }
         return $result;
